@@ -30,6 +30,11 @@
 								<f:param name="pageId" value="addNote" />
 							</h:commandLink>
 							<li><a href="#" class="selected">Note Dashboard</a></li>
+							<h:commandLink action="#{navigationController.showPage}"
+								value="Administration console">
+								<f:param name="pageId" value="adminConsole" />
+							</h:commandLink>
+							<h:messages id="mess" style=" height:100%; font-size: 20px; align:center; margin:2px 0px 0px 0px"/>
 						</ul>
 					</div>
 				</div>
@@ -54,11 +59,9 @@
 						<h:inputText id="title" value="#{dashboardNoteBB.search}"
 							a:maxlength="30" />
 						<h:commandButton styleClass="submit_btn_filter"
-							action="#{dashboardNoteBB.filter()}" update="msg" value="✓" />
+							action="#{dashboardNoteBB.filter()}" value="✓" />
 						<h:commandButton styleClass="submit_btn_filter"
-							action="#{dashboardNoteBB.clearFilter()}" update="msg" value="✖" />
-						<h:messages id="msg"
-							style=" height:100%; font-size: 20px; align:center; margin:2px 0px 0px 0px" />
+							action="#{dashboardNoteBB.clearFilter()}" value="✖" />
 					</div>
 
 					<div class="dashboard">
@@ -72,6 +75,8 @@
 								<h4>Reporter: #{createdNote.reporter.name}</h4>
 								<h:commandButton value="edytuj" styleClass="submit_btn"
 									action="#{dashboardNoteBB.editNote(createdNote)}" />
+									<h:commandButton value="usuń" styleClass="submit_btn"
+									action="#{dashboardNoteBB.deleteNote(createdNote)}" />
 							</div>
 						</ui:repeat>
 					</div>
@@ -86,6 +91,8 @@
 								<h4>Reporter: #{createdNote.reporter.name}</h4>
 								<h:commandButton value="edytuj" styleClass="submit_btn"
 									action="#{dashboardNoteBB.editNote(createdNote)}" />
+								<h:commandButton value="usuń" styleClass="submit_btn"
+									action="#{dashboardNoteBB.deleteNote(createdNote)}" />
 							</div>
 						</ui:repeat>
 					</div>
@@ -100,6 +107,8 @@
 								<h4>Reporter: #{createdNote.reporter.name}</h4>
 								<h:commandButton value="edytuj" styleClass="submit_btn"
 									action="#{dashboardNoteBB.editNote(createdNote)}" />
+								<h:commandButton value="usuń" styleClass="submit_btn"
+									action="#{dashboardNoteBB.deleteNote(createdNote)}" />
 							</div>
 						</ui:repeat>
 					</div>

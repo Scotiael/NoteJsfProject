@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+
+<h:body>
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" collapsible="true">
+			<h:form>
+				<p:commandButton value="Log out" id="withIcon"
+					actionListener="#{loginBB.doLogout()}" icon="ui-icon-disk" />
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="0" header="Kamil Bargiel @ 2018"
+			resizable="true" collapsible="true" style="text-align: center">
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="250" header="Menu"
+			resizable="true" collapsible="true">
+			<h:form>
+				<p:growl id="messages" showDetail="false" />
+				<p:menu>
+					<p:submenu label="Management">
+						<p:menuitem value="Back to user view"
+							outcome="/pages/note/note.xhtml" icon="ui-icon-home" />
+						<p:menuitem value="User management"
+							outcome="/pages/console/administrationConsoleUserM.xhtml"
+							icon="ui-icon-star" />
+						<p:menuitem value="Note management"
+							outcome="/pages/console/administrationConsoleNoteM.xhtml"
+							icon="ui-icon-star" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<p:dataScroller value="#{noteManagementBB.notesAsList()}" var="note"
+				chunkSize="10">
+				<f:facet name="header">
+            			Notes list
+        			</f:facet>
+
+				<h:panelGrid columns="2" style="width:100%"
+					columnClasses="logo,detail">
+				<h:form>
+					<p:outputPanel style="border: 1px solid black; border-radius: 2px;"
+						id="paanel">
+						<h:panelGrid columns="2" cellpadding="5"
+							style="border: 2px; border-color: black;">
+							<h:outputText value="Note title:" />
+							<h:outputText value="#{note.title}" style="font-weight: bold" />
+							<h:outputText value="Note description:" />
+							<h:outputText value="#{note.description}" style="font-weight: bold" />
+							<h:outputText value="Note assignee:" />
+							<h:outputText value="#{note.assignee.name}" style="font-weight: bold" />
+							<h:outputText value="Note reporter:" />
+							<h:outputText value="#{note.reporter.name}" style="font-weight: bold" />
+							<h:outputText value="Note status:" />
+							<h:outputText value="#{note.status.status}" style="font-weight: bold" />
+						</h:panelGrid>
+							<p:commandButton value="Edit note" id="withIcon"
+								action="#{noteManagementBB.editNote(note)}"
+								icon="ui-icon-disk" ajax="false" update="msg"/>
+								<h:messages id="msg" style=" height:100%; font-size: 20px; align:center; margin:2px 0px 0px 0px"/>
+					</p:outputPanel>
+					</h:form>
+				</h:panelGrid>
+			</p:dataScroller>
+			
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+
+
+</html>

@@ -11,6 +11,8 @@ import org.jboss.logging.Logger;
 
 import common.Common;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import note.CreateNoteBB;
@@ -73,7 +75,7 @@ public class LoginBB {
 
 	}
 
-	public String doLogin() {		
+	public String doLogin() throws NoSuchAlgorithmException {		
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		NoteUser user = null;
 
@@ -115,7 +117,7 @@ public class LoginBB {
 		return PAGE_LOGIN;
 	}
 	
-	private NoteUser getUserFromDatabase(String login, String pass) {
+	private NoteUser getUserFromDatabase(String login, String pass) throws NoSuchAlgorithmException {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) ctx.getExternalContext()
 				.getSession(true);
@@ -124,7 +126,7 @@ public class LoginBB {
 		List<User> fullList = userDAO.getFullList();
 		
 		for(User user : fullList) {
-			if(user.getName().equals(login) && user.getPassword().equals(pass)){
+			if(user.getName().equals(login) && user.getPassword().equals(getMd5(pass))){
 				u = new NoteUser(login,pass);
 				u.setIsblocked(user.getIsblocked());
 				u.setUserid(user.getUserid());
@@ -134,6 +136,18 @@ public class LoginBB {
 			}
 		}
 		return u;
+	}
+	
+	private String getMd5(String pass) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(pass.getBytes());
+        byte[] bytes = md.digest();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< bytes.length ;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
 	}
 
 }

@@ -10,6 +10,8 @@ import org.jboss.logging.Logger;
 
 import common.Common;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import note.dao.RoleDAO;
@@ -82,7 +84,7 @@ public class RegisterBB {
 
 	}
 
-	public String doRegister() {
+	public String doRegister() throws NoSuchAlgorithmException {
 		FacesContext ctx = FacesContext.getCurrentInstance();		
 		NoteUser user = null;
 
@@ -106,13 +108,25 @@ public class RegisterBB {
 		return PAGE_STAY_AT_THE_SAME;
 	}
 	
-	private User prepareUser() {
+	private User prepareUser() throws NoSuchAlgorithmException {
 		User userToSave = new User();
 		userToSave.setIsblocked((byte)0);
 		userToSave.setName(login);
-		userToSave.setPassword(pass);
+		userToSave.setPassword(getMd5(pass));
 		userToSave.setRole(roleDAO.getRole("user"));
 		return userToSave;
+	}
+	
+	private String getMd5(String pass) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(pass.getBytes());
+        byte[] bytes = md.digest();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< bytes.length ;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
 	}
 
 	public NoteUser getUser() {

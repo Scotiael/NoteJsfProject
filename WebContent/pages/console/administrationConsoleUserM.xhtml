@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+
+<h:body>
+	<p:layout fullPage="true" id="full">
+
+		<p:layoutUnit position="north" collapsible="true">
+			<h:form>
+				<p:commandButton value="Log out" id="withIcon"
+					actionListener="#{loginBB.doLogout()}" icon="ui-icon-disk" />
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="0" header="Kamil Bargiel @ 2018"
+			resizable="true" collapsible="true" style="text-align: center">
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="250" header="Menu"
+			resizable="true" collapsible="true">
+			<h:form>
+				<p:growl id="messages" showDetail="false" />
+				<p:menu>
+					<p:submenu label="Management">
+						<p:menuitem value="Back to user view"
+							outcome="/pages/note/note.xhtml" icon="ui-icon-home" />
+						<p:menuitem value="User management"
+							outcome="/pages/console/administrationConsoleUserM.xhtml"
+							icon="ui-icon-star" />
+						<p:menuitem value="Note management"
+							outcome="/pages/console/administrationConsoleNoteM.xhtml"
+							icon="ui-icon-star" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" id="lejalt">
+				<p:dataScroller value="#{userManagementBB.usersAsList()}" var="user"
+					chunkSize="10">
+					<f:facet name="header">
+            			Users list
+        			</f:facet>
+
+					<h:panelGrid columns="2" style="width:100%"
+						columnClasses="logo,detail">
+
+						<p:outputPanel
+							style="border: 1px solid black; border-radius: 2px;" id="paanel">
+							<h:panelGrid columns="2" cellpadding="5"
+								style="border: 2px; border-color: black;">
+								<h:outputText value="User name:" />
+								<h:outputText value="#{user.name}" style="font-weight: bold" />
+								<h:outputText value="User password:" />
+								<h:outputText value="#{user.password}" style="font-weight: bold" />
+								<h:outputText value="User role:" />
+								<h:outputText value="#{user.role.role}"
+									style="font-weight: bold" />
+								<h:outputText value="Blocked:" />
+								<h:outputText value="#{user.isblocked}"
+									style="font-weight: bold" />
+							</h:panelGrid>
+							<h:form>
+								<p:commandButton value="Block/unblock user" id="withIcon"
+									actionListener="#{userManagementBB.blockUser(user)}"
+									icon="ui-icon-disk" ajax="false"/>
+									</h:form>
+									<h:form>							
+								<p:commandButton value="Change role" id="withIcon2"
+									actionListener="#{userManagementBB.changeRole(user)}"
+									icon="ui-icon-disk" update=":lejalt :full" style="float:right" ajax="false"/>
+									<p:selectOneMenu id="car" value="#{userManagementBB.role}"
+									style="float:right;">
+									<f:selectItems value="#{userManagementBB.roleAsList()}"
+										var="role" itemLabel="#{role.role}" itemValue="#{role.roleid}" />
+								</p:selectOneMenu>	
+									</h:form>
+						</p:outputPanel>
+					</h:panelGrid>
+				</p:dataScroller>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+
+
+</html>

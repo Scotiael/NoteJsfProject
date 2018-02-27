@@ -120,4 +120,9 @@ public class DashboardNoteBB {
 		filter();
 		return null;
 	}	
+	
+	public String deleteNote(Note note) {
+		noteDAO.remove(note);
+		return null;
+	}
 }
