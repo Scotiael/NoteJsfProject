@@ -65,7 +65,7 @@ h5 { font-size: 25px; margin: 0 0 10px 0; padding: 0; color:black; }
 .float_l { float: left; }
 .float_r { float: right; }
 
-.image_wrapper { display: inline-block; border: 1px solid #2f2824; padding: 5px; margin-bottom: 10px; background: #000000; height:300px; weight:300px }
+.image_wrapper { display: inline-block; border: 1px solid #2f2824; padding: 5px; margin-bottom: 10px; background: #000000; height:300px; weight:300px; }
 .image_fl { float: left; margin: 3px 20px 0 0 }
 .image_ct { float: left; margin: 3px 20px 0 0 }
 

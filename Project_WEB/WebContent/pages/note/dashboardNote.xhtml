@@ -4,7 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/main-template.xhtml">
 
@@ -13,10 +14,11 @@
 	</ui:define>
 
 	<ui:define name="content">
-
+		
 		<h:form id="templatemo_wrapper">
+		
 			<div id="templatemo_wrapper">
-
+					
 				<div id="templatemo_sidebar">
 
 					<div id="menu">
@@ -40,7 +42,6 @@
 				</div>
 
 				<div id="templatemo_content">
-
 					<div class="filter" id="add_form_filter">
 						<h:outputText value="Assignee id:  " styleClass="text" />
 						<h:selectOneMenu value="#{dashboardNoteBB.assigneIdFilter}">
@@ -112,12 +113,11 @@
 							</div>
 						</ui:repeat>
 					</div>
-
 				</div>
-
+					
 				<div class="cleaner"></div>
+				
 			</div>
-
 		</h:form>
 
 	</ui:define>

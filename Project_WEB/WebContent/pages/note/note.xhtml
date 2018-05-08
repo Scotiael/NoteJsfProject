@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/main-template.xhtml">
 
@@ -37,7 +38,8 @@
 				</div>
 
 				<div id="templatemo_content">
-				
+				<p:commandButton onclick="exportChartInPDF()" class="button" value="EXPORT CHART TO PDF">
+				</p:commandButton>
 				<div class="panel" id="aboutus">
                         <h2>About Note</h2>
                         
@@ -51,7 +53,11 @@
                         <p>Note was created only as "final paper". Most important thing to learn in development process was how backend
                         part of JSF technology works. I was never huge fan of front-end technologies so it's for sure the weakest part.</p>
                         <cite>Kamil - <span>CEO</span></cite> </blockquote>
-                        <p><h:graphicImage url="/resources/template/img/note.jpg" alt="Image 1" class="image_wrapper" /></p>
+                        <br></br>
+                        <h:graphicImage url="/resources/template/img/note.jpg" alt="Image 1" class="image_wrapper" style="width:500px;height:400px;align:center;"/>
+                        <div style="float:left;">
+							<p:chart type="pie" model="#{mainBB.pieModel1}" style="width:500px;height:400px;align:center;" widgetVar="lineWV" />
+						</div>                        
                     </div>
 					
 				</div>
