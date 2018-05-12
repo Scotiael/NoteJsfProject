@@ -31,29 +31,23 @@ public class DashboardNoteBB {
 	UserDAO userDAO;
 	
 	private PieChartModel pieModel1;
- 
+	private boolean value1;
+	
     @PostConstruct
     public void init() {
-    	createPieModel1();
+    	    
+    }
+    
+    public boolean isValue1() {
+        return value1;
     }
  
-    public PieChartModel getPieModel1() {
+    public void setValue1(boolean value1) {
+        this.value1 = value1;
+    }
+
+	public PieChartModel getPieModel1() {
         return pieModel1;
-    }
- 
-    private void createPieModel1() {
-        pieModel1 = new PieChartModel();
-        
-        List<Note> notes = noteDAO.getFullList();
-        long countCreated = notes.stream().filter(element -> element.getStatus().getStatus().equals("Created")).count();
-        long countInProgress = notes.stream().filter(element -> element.getStatus().getStatus().equals("In_progress")).count();
-        long countDone = notes.stream().filter(element -> element.getStatus().getStatus().equals("Done")).count();
-        pieModel1.set("In progress", countInProgress);
-        pieModel1.set("Created", countCreated);
-        pieModel1.set("Done", countDone);
-         
-        pieModel1.setTitle("Note status statistics");
-        pieModel1.setLegendPosition("w");
     }
 	
 	Logger log = Logger.getLogger(DashboardNoteBB.class);

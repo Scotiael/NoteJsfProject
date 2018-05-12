@@ -1,5 +1,6 @@
 package note;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +31,18 @@ public class MainBB {
 	@EJB
 	UserDAO userDAO;
 	
-	private PieChartModel pieModel1;
+	private String count;
+	private PieChartModel pieModel1;	
  
-    @PostConstruct
+    public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	@PostConstruct
     public void init() {
     	createPieModel1();
     }
@@ -53,6 +63,13 @@ public class MainBB {
         pieModel1.set("Done", countDone);
          
         pieModel1.setTitle("Note status statistics");
-        pieModel1.setLegendPosition("w");
+        //pieModel1.setLegendPosition("w");
+        pieModel1.setLegendPosition("e");
+        pieModel1.setFill(true);
+        pieModel1.setShowDataLabels(true);
     }	
+    
+    public void increment() {
+    	this.count = Calendar.getInstance().getTime().toString();
+    }
 }

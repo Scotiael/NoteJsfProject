@@ -358,3 +358,29 @@ ul.navigation a:focus {
   top: 0;
   right: 0;
 }
+
+.sticky1 {
+  right: 0;
+  z-index: 150;
+  width: auto;
+  border-radius: 15px;
+  min-height: auto;
+  margin: 10px 10px 10px;
+  padding: 10px;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  color: white;
+  background-image: url("#{resource['template/img/darkNote.jpg']}");
+  background-size: 100% 100%;
+  box-shadow: -4px 4px 4px rgba(0,0,0,0.3);
+}
+.sticky1:before, .sticky:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  right: 0;
+}

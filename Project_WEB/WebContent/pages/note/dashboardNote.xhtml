@@ -21,7 +21,7 @@
 					
 				<div id="templatemo_sidebar">
 
-					<div id="menu">
+					<div id="menu"> 
 						<ul class="navigation">
 							<h:commandLink action="#{navigationController.showPage}"
 								value="Home">
@@ -42,7 +42,12 @@
 				</div>
 
 				<div id="templatemo_content">
+				<h:outputText value="Make it sweet: " styleClass="text" />
+						<p:selectBooleanCheckbox id="checkMsisdn" value="#{dashboardNoteBB.value1}">
+    					<p:ajax update="crata progress donee" />
+						</p:selectBooleanCheckbox>
 					<div class="filter" id="add_form_filter">
+					
 						<h:outputText value="Assignee id:  " styleClass="text" />
 						<h:selectOneMenu value="#{dashboardNoteBB.assigneIdFilter}">
 							<f:selectItem itemValue="#{-1}" itemLabel="-- all -- " />
@@ -63,13 +68,13 @@
 							action="#{dashboardNoteBB.filter()}" value="✓" />
 						<h:commandButton styleClass="submit_btn_filter"
 							action="#{dashboardNoteBB.clearFilter()}" value="✖" />
-					</div>
-
-					<div class="dashboard">
+					</div>	
+					<div id="dashCreate" class="dashboard">
+						<h:panelGrid id="crata" style="width:100%">
 						<h:outputText value="Created notes:" styleClass="text_title" />
 						<ui:repeat value="#{dashboardNoteBB.getList('Created')}"
 							var="createdNote">
-							<div class="sticky">
+							<h:panelGrid id="createdIdd" styleClass="#{dashboardNoteBB.value1 ? 'sticky1' : 'sticky'}" style="width:93%; height:10px;">
 								<h5>Title: #{createdNote.title}</h5>
 								<h4>Description: #{createdNote.description}</h4>
 								<h4>Assignee: #{createdNote.assignee.name}</h4>
@@ -78,14 +83,16 @@
 									action="#{dashboardNoteBB.editNote(createdNote)}" />
 									<h:commandButton value="usuń" styleClass="submit_btn"
 									action="#{dashboardNoteBB.deleteNote(createdNote)}" />
-							</div>
+							</h:panelGrid>
 						</ui:repeat>
-					</div>
+						</h:panelGrid>
+					</div>					
 					<div class="dashboard">
+						<h:panelGrid id="progress" style="width:100%">
 						<h:outputText value="In progress notes:" styleClass="text_title" />
 						<ui:repeat value="#{dashboardNoteBB.getList('In_progress')}"
 							var="createdNote">
-							<div class="sticky">
+							<h:panelGrid id="progressIdd" styleClass="#{dashboardNoteBB.value1 ? 'sticky1' : 'sticky'}" style="width:93%; height:10px;">
 								<h5>Title: #{createdNote.title}</h5>
 								<h4>Description: #{createdNote.description}</h4>
 								<h4>Assignee: #{createdNote.assignee.name}</h4>
@@ -94,14 +101,16 @@
 									action="#{dashboardNoteBB.editNote(createdNote)}" />
 								<h:commandButton value="usuń" styleClass="submit_btn"
 									action="#{dashboardNoteBB.deleteNote(createdNote)}" />
-							</div>
+							</h:panelGrid>
 						</ui:repeat>
+						</h:panelGrid>
 					</div>
 					<div class="dashboard">
+						<h:panelGrid id="donee" style="width:100%">
 						<h:outputText value="Done notes:" styleClass="text_title" />
 						<ui:repeat value="#{dashboardNoteBB.getList('Done')}"
 							var="createdNote">
-							<div class="sticky">
+							<h:panelGrid id="doneIdd" styleClass="#{dashboardNoteBB.value1 ? 'sticky1' : 'sticky'}" style="width:93%; height:10px;">
 								<h5>Title: #{createdNote.title}</h5>
 								<h4>Description: #{createdNote.description}</h4>
 								<h4>Assignee: #{createdNote.assignee.name}</h4>
@@ -110,8 +119,9 @@
 									action="#{dashboardNoteBB.editNote(createdNote)}" />
 								<h:commandButton value="usuń" styleClass="submit_btn"
 									action="#{dashboardNoteBB.deleteNote(createdNote)}" />
-							</div>
+							</h:panelGrid>
 						</ui:repeat>
+						</h:panelGrid>
 					</div>
 				</div>
 					

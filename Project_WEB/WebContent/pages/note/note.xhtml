@@ -15,6 +15,7 @@
 	<ui:define name="content">
 
 		<h:form id="templatemo_wrapper">
+		
 			<div id="templatemo_wrapper">
 
 				<div id="templatemo_sidebar">
@@ -40,6 +41,8 @@
 				<div id="templatemo_content">
 				<p:commandButton onclick="exportChartInPDF()" class="button" value="EXPORT CHART TO PDF">
 				</p:commandButton>
+				<h:outputText id="txt_count" value="#{mainBB.count}" />
+    	<p:poll interval="1" listener="#{mainBB.increment()}" update="txt_count" />
 				<div class="panel" id="aboutus">
                         <h2>About Note</h2>
                         
@@ -56,7 +59,7 @@
                         <br></br>
                         <h:graphicImage url="/resources/template/img/note.jpg" alt="Image 1" class="image_wrapper" style="width:500px;height:400px;align:center;"/>
                         <div style="float:left;">
-							<p:chart type="pie" model="#{mainBB.pieModel1}" style="width:500px;height:400px;align:center;" widgetVar="lineWV" />
+							<p:chart type="pie" model="#{mainBB.pieModel1}" style="width:500px;height:400px;align:center;" widgetVar="chaart" />
 						</div>                        
                     </div>
 					
