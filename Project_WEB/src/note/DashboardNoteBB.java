@@ -32,13 +32,22 @@ public class DashboardNoteBB {
 	
 	private PieChartModel pieModel1;
 	private boolean value1;
+	private String colorPopup;
 	
     @PostConstruct
     public void init() {
     	    
     }
     
-    public boolean isValue1() {
+    public String getColorPopup() {
+		return colorPopup;
+	}
+    
+	public void setColorPopup(String colorPopup) {
+		this.colorPopup = colorPopup;
+	}
+	
+	public boolean isValue1() {
         return value1;
     }
  
@@ -135,11 +144,16 @@ public class DashboardNoteBB {
 		return "noteEdit?faces-redirect=true";
 	}
 	
+	public void test() {
+		log.info("test");
+	}
+	
 	public String clearFilter() {
 		assigneIdFilter = -1;
 		reporterIdFilter = -1;
 		search = null;
 		filter();
+		log.info(colorPopup);
 		return null;
 	}	
 	

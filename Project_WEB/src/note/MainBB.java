@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -71,5 +72,8 @@ public class MainBB {
     
     public void increment() {
     	this.count = Calendar.getInstance().getTime().toString();
+    	Random r = new Random();    	
+    	pieModel1.set("Pulse", r.nextInt(10));
+    	pieModel1.set("Pulse2", r.nextInt(5));
     }
 }
