@@ -75,5 +75,6 @@ public class MainBB {
     	Random r = new Random();    	
     	pieModel1.set("Pulse", r.nextInt(10));
     	pieModel1.set("Pulse2", r.nextInt(5));
+    	pieModel1.set("Pulse3", r.nextInt(20));
     }
 }
